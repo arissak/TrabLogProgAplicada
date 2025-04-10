@@ -1,6 +1,6 @@
 class Menu:
-    def __init__(self,tela):
-        self.tela= tela
+    def __init__(self, tela):
+        self.tela = tela
 
-        def run(self, ):
-            pass
+    def run(self):
+        pass
