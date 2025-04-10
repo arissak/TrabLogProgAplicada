@@ -15,7 +15,9 @@ class Menu:
             self.tela.blit(source=self.surf, dest=self.rect)
             pygame.display.flip()
 
-            self.menu_text(50, "Tic Tac Toe", (160, 32, 240), (288, 120))
+            self.menu_text(50, "Tic Tac Toe", (160, 32, 240), (288, 150))
+            self.menu_text(30, "New Game", (255,255,255), (288, 230))
+            self.menu_text(30, "Register", (255,255,255), (288, 260))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
