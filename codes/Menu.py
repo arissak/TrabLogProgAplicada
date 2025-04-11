@@ -6,10 +6,12 @@ from codes.Const import MENU_OPTION
 
 
 class Menu:
+#Carrega a telinha do jogo no menu com a imagem de background
     def __init__(self, tela):
         self.tela = tela
         self.surf = pygame.image.load('./asset/2op3.png')
         self.rect = self.surf.get_rect(left=0,top=0)
+#Adiciona a musica em loop junto com as informacoes da tela do menu
     def run(self):
         menu_option = 0
         pygame.mixer_music.load('./asset/som.wav')
@@ -24,19 +26,26 @@ class Menu:
                     self.menu_text(30,MENU_OPTION[i], (177, 156, 217), (288, 230+30*i))
                 else:
                     self.menu_text(30, MENU_OPTION[i], (255, 255, 255), (288, 230 + 30 * i))
+            pygame.display.flip()
 
+#Eventos que tornam o jogo funcional (selecionar a funcao desejada)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-                    quit()
+                    quit() #fechar
                 if event.type == pygame.KEYDOWN:
-                    if event.key==pygame.K_DOWN:
+                    if event.key == pygame.K_DOWN:
                         if menu_option<len(MENU_OPTION)-1:
-                            menu_option+=1
+                            menu_option += 1
                         else:
-                            menu_option = 0
-
-            pygame.display.flip()
+                            menu_option = 0 #Seta para baixo
+                    if event.key == pygame.K_UP:
+                        if menu_option>0:
+                            menu_option -= 1
+                        else:
+                            menu_option = len(MENU_OPTION)-1 #Seta para cima
+                if event.type == pygame.K_RETURN:
+                    return
 
     def menu_text(self,text_size:int,text:str,text_color:tuple,text_center_pos:tuple):
         text_font: Font = pygame.font.SysFont(name='Arial Bold',size=text_size)

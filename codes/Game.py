@@ -7,7 +7,7 @@ class Game:
         self.tela = pygame.display.set_mode(size=(576, 324))
 
     def run(self):
-    # Necessario para deixar a tela aberta e porder fechar quando quiser
+    # Necessario para chamar o menu
         while True:
             menu = Menu(self.tela)
             menu.run()
