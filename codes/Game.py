@@ -1,3 +1,4 @@
+from codes.Const import MENU_OPTION
 from codes.Menu import Menu
 import pygame
 
@@ -10,4 +11,10 @@ class Game:
     # Necessario para chamar o menu
         while True:
             menu = Menu(self.tela)
-            menu.run()
+            menu_return = menu.run()
+
+            #Checar qual funcionalidade rodar
+            if menu_return == MENU_OPTION[0]:
+                pass
+            else:
+                pass
