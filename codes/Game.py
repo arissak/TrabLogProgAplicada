@@ -1,6 +1,7 @@
 from codes.Const import MENU_OPTION
 from codes.Menu import Menu
 import pygame
+from codes.JogoDaVelha import JogoDaVelha
 
 class Game:
     def __init__(self):
@@ -15,6 +16,7 @@ class Game:
 
             #Checar qual funcionalidade rodar
             if menu_return == MENU_OPTION[0]:
-                pass
+                jogo = JogoDaVelha(self.tela,'Jogo da Velha', menu_return)
+                jogo_return = jogo.run()
             else:
                 pass
