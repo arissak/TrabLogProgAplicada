@@ -22,6 +22,7 @@ class JogoDaVelha:
             self.tela.blit(source=self.surf, dest=self.rect)
 
             voltar_rect = self.menu_text(20, "<-Menu", (255,255,255), (40, 30))
+
             self.menu_text(50, "Jogo da Velha", (160, 32, 240), (288, 90))
             pygame.display.flip()
 

@@ -16,17 +16,15 @@ class Registro:
         print(">>> Entrou no Registro.run()")
         pygame.mixer_music.load('./asset/som.wav')
         pygame.mixer_music.play(-1)
-        #voltar_rect = None
+        voltar_rect = None
 
         while True:
             self.tela.fill((0, 0, 0))  # Limpa a tela com preto
             self.tela.blit(source=self.surf, dest=self.rect)
 
-            self.menu_text(50, "Registro", (160, 32, 240), (288, 90))
-            pygame.display.flip()
-
             voltar_rect = self.menu_text(20, "<-Menu", (255, 255, 255), (40, 30))
-            self.menu_text(50, "Jogo da Velha", (160, 32, 240), (288, 90))
+
+            self.menu_text(50, "Registro", (160, 32, 240), (288, 90))
             pygame.display.flip()
 
             for event in pygame.event.get():
