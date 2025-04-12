@@ -22,12 +22,12 @@ class JogoDaVelha:
         self.surf = pygame.image.load('./asset/3op3.png')
         self.rect = self.surf.get_rect(left=0, top=0)
 
-        self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]]
+        self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]] #cria a matriz 3x3 vazia
 
         self.rects_celulas = [
             [pygame.Rect(x - 32, y - 32, 65, 65) for (x, y) in linha]
             for linha in centros_celulas
-        ]
+        ] #retorna retangulos utilizando o centro das coordenads de cada tupla para para celula
 
     def run(self):
         pygame.mixer_music.load('./asset/som.wav')
