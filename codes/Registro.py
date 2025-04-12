@@ -16,7 +16,7 @@ class Registro:
         print(">>> Entrou no Registro.run()")
         pygame.mixer_music.load('./asset/som.wav')
         pygame.mixer_music.play(-1)
-        voltar_rect = None
+        #voltar_rect = None
 
         while True:
             self.tela.fill((0, 0, 0))  # Limpa a tela com preto
