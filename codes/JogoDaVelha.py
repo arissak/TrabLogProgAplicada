@@ -2,6 +2,9 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
+from codes.Const import posicoes_celulas
+
+
 #Desenha o tabuleiro
 def grade_tabuleiro(tela):
     pygame.draw.line(tela, (255,255,255),(238,12),(238,312),6)
@@ -31,6 +34,14 @@ class JogoDaVelha:
             voltar_rect = self.menu_text(20, "<-Menu", (255,255,255), (40, 30))
 
             self.menu_text(20, "Jogo da Velha", (160, 32, 240), (500, 30))
+
+            for i in range(3):  # 3 linhas
+                for j in range(3):
+                    botao_img = pygame.image.load('./asset/fig10.png').convert_alpha()
+                    img_redimensionada = pygame.transform.scale(botao_img, (65,65))
+                    centro = posicoes_celulas[i][j]
+                    botao_rect = img_redimensionada.get_rect(center=centro)
+                    self.tela.blit(img_redimensionada, botao_rect)
 
             grade_tabuleiro(self.tela)
 
