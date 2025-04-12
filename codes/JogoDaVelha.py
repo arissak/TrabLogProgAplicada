@@ -19,7 +19,7 @@ class JogoDaVelha:
         self.tela_nome = tela_nome
         self.menu_option = menu_option
 
-        self.surf = pygame.image.load('./asset/3op3.png')
+        self.surf = pygame.image.load('./asset/4op3.png')
         self.rect = self.surf.get_rect(left=0, top=0)
 
         self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]] #cria a matriz 3x3 vazia
@@ -40,8 +40,7 @@ class JogoDaVelha:
             self.tela.blit(source=self.surf, dest=self.rect)
 
             voltar_rect = self.menu_text(20, "<-Menu", (255,255,255), (40, 30))
-
-            self.menu_text(20, "Jogo da Velha", (160, 32, 240), (500, 30))
+            reset_rect = self.menu_text(30, "<-Resetar", (160, 32, 240), (60, 300))
 
             for i in range(3):  # 3 linhas
                 for j in range(3):
@@ -72,6 +71,9 @@ class JogoDaVelha:
                         if voltar_rect.collidepoint(mouse_pos): #verifica se o clique foi no botao
                             return #faz o botao retornar ao Menu
 
+                        if reset_rect.collidepoint(mouse_pos):
+                            self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]]
+
                         for i in range(3):
                             for j in range(3):
                                 if self.rects_celulas[i][j].collidepoint(mouse_pos) and not self.tabuleiro[i][j]:
@@ -90,4 +92,3 @@ class JogoDaVelha:
         text_rect:Rect=text_surf.get_rect(center=text_center_pos)
         self.tela.blit(source=text_surf,dest=text_rect)
         return text_rect
-
