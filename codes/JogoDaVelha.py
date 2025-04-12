@@ -2,7 +2,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from codes.Const import posicoes_celulas
+from codes.Const import centros_celulas
 
 
 #Desenha o tabuleiro
@@ -24,6 +24,11 @@ class JogoDaVelha:
 
         self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]]
 
+        self.rects_celulas = [
+            [pygame.Rect(x - 32, y - 32, 65, 65) for (x, y) in linha]
+            for linha in centros_celulas
+        ]
+
     def run(self):
         pygame.mixer_music.load('./asset/som.wav')
         pygame.mixer_music.play(-1)
@@ -40,17 +45,17 @@ class JogoDaVelha:
 
             for i in range(3):  # 3 linhas
                 for j in range(3):
+                    centro = centros_celulas[i][j]
+
                     botao_img = pygame.image.load('./asset/fig12.png').convert_alpha()
                     img_redimensionada = pygame.transform.scale(botao_img, (65,65))
-
-                    centro = posicoes_celulas[i][j].center
                     botao_rect = img_redimensionada.get_rect(center=centro)
                     self.tela.blit(img_redimensionada, botao_rect)
 
-                if self.tabuleiro[i][j]:
-                    img_jogador = pygame.image.load(self.tabuleiro[i][j]).convert_alpha()
-                    img_jogador = pygame.transform.scale(img_jogador, (65, 65))
-                    self.tela.blit(img_jogador, botao_rect)
+                    if self.tabuleiro[i][j]:
+                        img_jogador = pygame.image.load(self.tabuleiro[i][j]).convert_alpha()
+                        img_jogador = pygame.transform.scale(img_jogador, (65, 65))
+                        self.tela.blit(img_jogador, botao_rect)
 
             grade_tabuleiro(self.tela)
 
@@ -69,7 +74,7 @@ class JogoDaVelha:
 
                         for i in range(3):
                             for j in range(3):
-                                if posicoes_celulas[i][j].collidepoint(mouse_pos) and not self.tabuleiro[i][j]:
+                                if self.rects_celulas[i][j].collidepoint(mouse_pos) and not self.tabuleiro[i][j]:
                                     # Se a célula estiver vazia, registra o movimento
                                     if player1:
                                         self.tabuleiro[i][j] = './asset/fig19.png'  #Img para player1
