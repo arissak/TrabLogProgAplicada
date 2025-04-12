@@ -42,9 +42,15 @@ class JogoDaVelha:
                 for j in range(3):
                     botao_img = pygame.image.load('./asset/fig12.png').convert_alpha()
                     img_redimensionada = pygame.transform.scale(botao_img, (65,65))
-                    centro = posicoes_celulas[i][j]
+
+                    centro = posicoes_celulas[i][j].center
                     botao_rect = img_redimensionada.get_rect(center=centro)
                     self.tela.blit(img_redimensionada, botao_rect)
+
+                if self.tabuleiro[i][j]:
+                    img_jogador = pygame.image.load(self.tabuleiro[i][j]).convert_alpha()
+                    img_jogador = pygame.transform.scale(img_jogador, (65, 65))
+                    self.tela.blit(img_jogador, botao_rect)
 
             grade_tabuleiro(self.tela)
 
