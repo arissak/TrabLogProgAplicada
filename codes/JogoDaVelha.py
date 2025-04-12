@@ -4,10 +4,10 @@ from pygame.font import Font
 
 #Desenha o tabuleiro
 def grade_tabuleiro(tela):
-    pygame.draw.line(tela, (255,255,255),(105,100),(105,300),6)
-    pygame.draw.line(tela, (255,255,255),(205,100),(205,300),6)
-    pygame.draw.line(tela, (255,255,255),(100,105),(300,105),6)
-    pygame.draw.line(tela, (255,255,255),(100,205),(300,205),6)
+    pygame.draw.line(tela, (255,255,255),(238,12),(238,312),6)
+    pygame.draw.line(tela, (255,255,255),(338,12),(338,312),6)
+    pygame.draw.line(tela, (255,255,255),(138,112),(438,112),6)
+    pygame.draw.line(tela, (255,255,255),(138,212),(438,212),6)
 
 
 class JogoDaVelha:
@@ -30,7 +30,7 @@ class JogoDaVelha:
 
             voltar_rect = self.menu_text(20, "<-Menu", (255,255,255), (40, 30))
 
-            self.menu_text(50, "Jogo da Velha", (160, 32, 240), (288, 90))
+            self.menu_text(20, "Jogo da Velha", (160, 32, 240), (500, 30))
 
             grade_tabuleiro(self.tela)
 
