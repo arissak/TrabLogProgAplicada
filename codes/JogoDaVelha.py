@@ -2,7 +2,14 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
-#Tirei do meu cu
+#Desenha o tabuleiro
+def grade_tabuleiro(tela):
+    pygame.draw.line(tela, (255,255,255),(105,100),(105,300),6)
+    pygame.draw.line(tela, (255,255,255),(205,100),(205,300),6)
+    pygame.draw.line(tela, (255,255,255),(100,105),(300,105),6)
+    pygame.draw.line(tela, (255,255,255),(100,205),(300,205),6)
+
+
 class JogoDaVelha:
     def __init__(self, tela, tela_nome, menu_option):
         self.tela = tela
@@ -24,6 +31,9 @@ class JogoDaVelha:
             voltar_rect = self.menu_text(20, "<-Menu", (255,255,255), (40, 30))
 
             self.menu_text(50, "Jogo da Velha", (160, 32, 240), (288, 90))
+
+            grade_tabuleiro(self.tela)
+
             pygame.display.flip()
 
             for event in pygame.event.get():
@@ -42,3 +52,4 @@ class JogoDaVelha:
         text_rect:Rect=text_surf.get_rect(center=text_center_pos)
         self.tela.blit(source=text_surf,dest=text_rect)
         return text_rect
+
