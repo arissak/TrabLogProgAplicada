@@ -22,10 +22,13 @@ class JogoDaVelha:
         self.surf = pygame.image.load('./asset/3op3.png')
         self.rect = self.surf.get_rect(left=0, top=0)
 
+        self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]]
+
     def run(self):
         pygame.mixer_music.load('./asset/som.wav')
         pygame.mixer_music.play(-1)
-        voltar_rect = None
+
+        player1 = True
 
         while True:
             self.tela.fill((0, 0, 0))  # Limpa a tela com preto
@@ -37,7 +40,7 @@ class JogoDaVelha:
 
             for i in range(3):  # 3 linhas
                 for j in range(3):
-                    botao_img = pygame.image.load('./asset/fig10.png').convert_alpha()
+                    botao_img = pygame.image.load('./asset/fig12.png').convert_alpha()
                     img_redimensionada = pygame.transform.scale(botao_img, (65,65))
                     centro = posicoes_celulas[i][j]
                     botao_rect = img_redimensionada.get_rect(center=centro)
@@ -51,11 +54,24 @@ class JogoDaVelha:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit() #fechar
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1: #verifica se o clique e no botao esquerdo
                         mouse_pos = pygame.mouse.get_pos() #pega a posicao do botao
                         if voltar_rect.collidepoint(mouse_pos): #verifica se o clique foi no botao
                             return #faz o botao retornar ao Menu
+
+                        for i in range(3):
+                            for j in range(3):
+                                if posicoes_celulas[i][j].collidepoint(mouse_pos) and not self.tabuleiro[i][j]:
+                                    # Se a célula estiver vazia, registra o movimento
+                                    if player1:
+                                        self.tabuleiro[i][j] = './asset/fig19.png'  #Img para player1
+                                    else:
+                                        self.tabuleiro[i][j] = './asset/fig15.png'  #Img para player2
+
+                                    player1 = not player1  # Alterna entre os jogadores
+                                    break  # Sai do loop de verificação de células
 
     def menu_text(self,text_size:int,text:str,text_color:tuple,text_center_pos:tuple):
         text_font: Font = pygame.font.SysFont(name='arial',size=text_size)
