@@ -47,7 +47,7 @@ class JogoDaVelha:
                 for j in range(3):
                     centro = centros_celulas[i][j]
 
-                    botao_img = pygame.image.load('./asset/fig12.png').convert_alpha()
+                    botao_img = pygame.image.load('./asset/12.png').convert_alpha()
                     img_redimensionada = pygame.transform.scale(botao_img, (65,65))
                     botao_rect = img_redimensionada.get_rect(center=centro)
                     self.tela.blit(img_redimensionada, botao_rect)
