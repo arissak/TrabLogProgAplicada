@@ -13,7 +13,7 @@ class Registro:
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
-        print(">>> Entrou no Registro.run()")
+
         pygame.mixer_music.load('./asset/som.wav')
         pygame.mixer_music.play(-1)
         voltar_rect = None
@@ -25,6 +25,8 @@ class Registro:
             voltar_rect = self.menu_text(20, "<-Menu", (255, 255, 255), (40, 30))
 
             self.menu_text(50, "Registro", (160, 32, 240), (288, 90))
+            self.menu_text(30, "Apelido", (255, 255, 255), (288, 120))
+
             pygame.display.flip()
 
             for event in pygame.event.get():
@@ -36,6 +38,7 @@ class Registro:
                         mouse_pos = pygame.mouse.get_pos()  # pega a posicao do botao
                         if voltar_rect.collidepoint(mouse_pos):  # verifica se o clique foi no botao
                             return  # faz o botao retornar ao Menu
+
     def menu_text(self,text_size:int,text:str,text_color:tuple,text_center_pos:tuple):
         text_font: Font = pygame.font.SysFont(name='arial',size=text_size)
         text_surf:Surface=text_font.render(text,True,text_color).convert_alpha()
