@@ -9,7 +9,7 @@ class Menu:
 #Carrega a telinha do jogo no menu com a imagem de background
     def __init__(self, tela):
         self.tela = tela
-        self.surf = pygame.image.load('./asset/2op3.png')
+        self.surf = pygame.image.load('./asset/2op2.png')
         self.rect = self.surf.get_rect(left=0,top=0)
         self.db = DB('DB_nome.db')
 
@@ -22,12 +22,12 @@ class Menu:
             self.tela.fill((0, 0, 0))
             self.tela.blit(source=self.surf, dest=self.rect)
 
-            self.menu_text(50, "Tic Tac Toe", (160, 32, 240), (288, 150))
+            self.menu_text(50, "Tic Tac Toe", (177, 156, 217), (288, 50))
             mutar_rect = self.menu_text(20, "<-Mutar", (255, 255, 255), (40, 70))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
-                    self.menu_text(30,MENU_OPTION[i], (177, 156, 217), (288, 230+30*i))
+                    self.menu_text(30,MENU_OPTION[i], (160, 32, 240), (288, 230+30*i))
                 else:
                     self.menu_text(30, MENU_OPTION[i], (255, 255, 255), (288, 230 + 30 * i))
             pygame.display.flip()

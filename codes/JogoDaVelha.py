@@ -19,7 +19,7 @@ class JogoDaVelha:
         self.tela_nome = tela_nome
         self.menu_option = menu_option
         self.db = DB('DB_nome.db')
-        self.surf = pygame.image.load('./asset/4op3.png')
+        self.surf = pygame.image.load('./asset/2op3.png')
         self.rect = self.surf.get_rect(left=0, top=0)
 
         self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]] #cria a matriz 3x3 vazia
