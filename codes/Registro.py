@@ -2,6 +2,8 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
+from codes.DB import DB
+
 
 class Registro:
     def __init__(self, tela,tela_nome,menu_option):
@@ -11,6 +13,10 @@ class Registro:
 
         self.surf = pygame.image.load('./asset/2op4.png')
         self.rect = self.surf.get_rect(left=0, top=0)
+
+    def save(self, menu_return: str):
+        db = DB('DB_nome'')
+
 
     def run(self):
 
