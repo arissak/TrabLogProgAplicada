@@ -34,7 +34,6 @@ class Registro:
             mutar_rect = self.menu_text(20, "<-Mutar", (255, 255, 255), (40, 70))
 
             self.menu_text(50, "Registro", (160, 32, 240), (288, 90))
-            #self.menu_text(30, "Apelido", (255, 255, 255), (288, 120))
             self.menu_text(30, "Apelido", (255, 255, 255), (288, 150))
             self.menu_text(30, "Genero", (255, 255, 255), (288, 220))
             self.menu_text(25, self.nome + ("|" if self.campo_ativo == "nome" else ""), (255, 255, 0), (288, 180))

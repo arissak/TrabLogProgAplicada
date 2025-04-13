@@ -22,6 +22,7 @@ class Menu:
             self.tela.blit(source=self.surf, dest=self.rect)
 
             self.menu_text(50, "Tic Tac Toe", (160, 32, 240), (288, 150))
+            mutar_rect = self.menu_text(20, "<-Mutar", (255, 255, 255), (40, 70))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
@@ -35,6 +36,7 @@ class Menu:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     quit() #fechar
+
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_DOWN:
                         if menu_option<len(MENU_OPTION)-1:
@@ -49,8 +51,15 @@ class Menu:
                     if event.key == pygame.K_RETURN:
                         return  MENU_OPTION[menu_option]
 
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:  #verifica se o clique e no botao esquerdo
+                        mouse_pos = pygame.mouse.get_pos()
+                        if mutar_rect.collidepoint(mouse_pos):
+                            pygame.mixer_music.stop()
+
     def menu_text(self,text_size:int,text:str,text_color:tuple,text_center_pos:tuple):
         text_font: Font = pygame.font.SysFont(name='arial',size=text_size)
         text_surf:Surface=text_font.render(text,True,text_color).convert_alpha()
         text_rect:Rect=text_surf.get_rect(center=text_center_pos)
         self.tela.blit(source=text_surf,dest=text_rect)
+        return text_rect

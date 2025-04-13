@@ -40,6 +40,7 @@ class JogoDaVelha:
             self.tela.blit(source=self.surf, dest=self.rect)
 
             voltar_rect = self.menu_text(20, "<-Menu", (255,255,255), (40, 30))
+            mutar_rect = self.menu_text(20, "<-Mutar", (255, 255, 255), (40, 70))
             reset_rect = self.menu_text(30, "<-Resetar", (160, 32, 240), (60, 300))
 
             for i in range(3):  # 3 linhas
@@ -70,6 +71,8 @@ class JogoDaVelha:
                         mouse_pos = pygame.mouse.get_pos() #pega a posicao do botao
                         if voltar_rect.collidepoint(mouse_pos): #verifica se o clique foi no botao
                             return #faz o botao retornar ao Menu
+                        if mutar_rect.collidepoint(mouse_pos):
+                            pygame.mixer_music.stop()
 
                         if reset_rect.collidepoint(mouse_pos):
                             self.tabuleiro = [[None, None, None], [None, None, None], [None, None, None]]
