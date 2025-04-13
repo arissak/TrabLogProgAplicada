@@ -18,7 +18,7 @@ class JogoDaVelha:
         self.tela = tela
         self.tela_nome = tela_nome
         self.menu_option = menu_option
-
+        self.db = DB('DB_nome.db')
         self.surf = pygame.image.load('./asset/4op3.png')
         self.rect = self.surf.get_rect(left=0, top=0)
 
@@ -38,7 +38,7 @@ class JogoDaVelha:
             name, gender = resultado
             self.menu_text(20, f'{name} ({gender})', (160, 32, 240), (500, 70))
         else:
-            self.menu_text(20, "Registro nao encontrado.", (255, 0, 0), (500, 70))
+            self.menu_text(13, "Registro nao encontrado.", (255, 0, 0), (500, 70))
 
     def run(self):
         pygame.mixer_music.load('./asset/som.wav')
@@ -75,6 +75,8 @@ class JogoDaVelha:
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    self.db.reset()
+                    self.db.close()
                     pygame.quit()
                     quit() #fechar
 

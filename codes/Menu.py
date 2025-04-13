@@ -1,8 +1,8 @@
 import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
-
 from codes.Const import MENU_OPTION
+from codes.DB import DB
 
 
 class Menu:
@@ -11,8 +11,9 @@ class Menu:
         self.tela = tela
         self.surf = pygame.image.load('./asset/2op3.png')
         self.rect = self.surf.get_rect(left=0,top=0)
-#Adiciona a musica em loop junto com as informacoes da tela do menu
+        self.db = DB('DB_nome.db')
 
+#Adiciona a musica em loop junto com as informacoes da tela do menu
     def run(self):
         menu_option = 0
         pygame.mixer_music.load('./asset/som.wav')
@@ -34,6 +35,8 @@ class Menu:
 #Eventos que tornam o jogo funcional (selecionar a funcao desejada)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    self.db.reset()  # Limpa os dados
+                    self.db.close()
                     pygame.quit()
                     quit() #fechar
 

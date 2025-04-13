@@ -4,6 +4,9 @@ import sqlite3
 class DB:
     def __init__(self, db_name:str):
         self.db_name = db_name
+        self.conn = sqlite3.connect(db_name)
+        self.cursor = self.conn.cursor()
+
         self.connection = sqlite3.connect(db_name)
         self.connection.execute('''
                                 CREATE TABLE IF NOT EXISTS dados(
@@ -19,6 +22,10 @@ class DB:
     def show(self):
         cursor = self.connection.execute('SELECT name,gender FROM dados ORDER BY id DESC LIMIT 1')
         return cursor.fetchone()
+
+    def reset(self):
+        self.cursor.execute("DELETE FROM dados")  # Deleta todos os dados da tabela
+        self.conn.commit()
 
     def close(self):
         return self.connection.close()
