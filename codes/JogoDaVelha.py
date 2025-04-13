@@ -2,6 +2,7 @@ import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
+from codes.DB import DB
 from codes.Const import centros_celulas
 
 
@@ -11,7 +12,6 @@ def grade_tabuleiro(tela):
     pygame.draw.line(tela, (255,255,255),(338,12),(338,312),6)
     pygame.draw.line(tela, (255,255,255),(138,112),(438,112),6)
     pygame.draw.line(tela, (255,255,255),(138,212),(438,212),6)
-
 
 class JogoDaVelha:
     def __init__(self, tela, tela_nome, menu_option):
@@ -29,6 +29,17 @@ class JogoDaVelha:
             for linha in centros_celulas
         ] #retorna retangulos utilizando o centro das coordenads de cada tupla para para celula
 
+    def show_apelido(self):
+        db = DB('DB_nome.db')
+        resultado = db.show()
+        db.close()
+
+        if resultado:  # Verifica se tem algo salvo
+            name, gender = resultado
+            self.menu_text(20, f'{name} ({gender})', (160, 32, 240), (500, 70))
+        else:
+            self.menu_text(20, "Registro nao encontrado.", (255, 0, 0), (500, 70))
+
     def run(self):
         pygame.mixer_music.load('./asset/som.wav')
         pygame.mixer_music.play(-1)
@@ -42,6 +53,7 @@ class JogoDaVelha:
             voltar_rect = self.menu_text(20, "<-Menu", (255,255,255), (40, 30))
             mutar_rect = self.menu_text(20, "<-Mutar", (255, 255, 255), (40, 70))
             reset_rect = self.menu_text(30, "<-Resetar", (160, 32, 240), (60, 300))
+            self.menu_text(20, "Apelido", (255, 255, 255), (500, 30))
 
             for i in range(3):  # 3 linhas
                 for j in range(3):
@@ -58,7 +70,7 @@ class JogoDaVelha:
                         self.tela.blit(img_jogador, botao_rect)
 
             grade_tabuleiro(self.tela)
-
+            self.show_apelido()
             pygame.display.flip()
 
             for event in pygame.event.get():
@@ -88,6 +100,7 @@ class JogoDaVelha:
 
                                     player1 = not player1  # Alterna entre os jogadores
                                     break  # Sai do loop de verificação de células
+
 
     def menu_text(self,text_size:int,text:str,text_color:tuple,text_center_pos:tuple):
         text_font: Font = pygame.font.SysFont(name='arial',size=text_size)

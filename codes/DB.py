@@ -17,7 +17,8 @@ class DB:
         self.connection.commit()
 
     def show(self):
-        return self.connection.execute('SELECT name FROM dados ORDER BY id DESC LIMIT 1').fetchall()
+        cursor = self.connection.execute('SELECT name,gender FROM dados ORDER BY id DESC LIMIT 1')
+        return cursor.fetchone()
 
     def close(self):
         return self.connection.close()

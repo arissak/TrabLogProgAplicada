@@ -23,7 +23,6 @@ class Registro:
 
         pygame.mixer_music.load('./asset/som.wav')
         pygame.mixer_music.play(-1)
-        voltar_rect = None
         db = DB('DB_nome.db')
 
         while True:
